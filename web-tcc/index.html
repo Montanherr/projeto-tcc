@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- Header Menu -->
+    <header class="header">
+        <div class="logo">
+            <h1>Minha Empresa</h1>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Register</a></li>
+                <li><a href="result.html">Grid</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Formulário de Cadastro</h2>
+
+        <form id="formCadastro" action="javascript:void(0)">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" placeholder="Digite seu e-mail" >
+
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
+
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" >
+
+            <label for="confirmacaoSenha">Confirmação de Senha</label>
+            <input type="password" name="confirmacaoSenha" id="confirmacaoSenha" placeholder="Confirme sua senha" >
+
+            <label for="sexo">Gênero</label>
+            <div class="sexo-options">
+                <input type="radio" name="sexo" value="masculino" id="sexo-masculino" ><label for="sexo-masculino">Masculino</label>
+                <input type="radio" name="sexo" value="feminino" id="sexo-feminino" ><label for="sexo-feminino">Feminino</label>
+            </div>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>

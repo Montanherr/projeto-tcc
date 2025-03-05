@@ -1,0 +1,98 @@
+/* Resetando margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Estilo para o Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    font-size: 24px;
+}
+
+header nav .menu {
+    list-style: none;
+    display: flex;
+}
+
+header nav .menu li {
+    margin-left: 20px;
+}
+
+header nav .menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+header nav .menu li a:hover {
+    color: #f4f4f9;
+}
+
+/* Estilos da Container do Formulário */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos do Formulário */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form .sexo-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #555;
+}
