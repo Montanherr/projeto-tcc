@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Fake - Produtos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px;
+    }
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product h3 {
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .product p {
+      color: #95a5a6;
+      font-size: 14px;
+    }
+    .product button {
+      background-color: #27ae60;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .product button:hover {
+      background-color: #2ecc71;
+    }
+    #cart {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #checkout {
+      background-color: #3498db;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    #checkout:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Loja Fake - E-commerce</h1>
+    <p>Selecione seus produtos e vá para o checkout</p>
+  </header>
+
+  <div class="product-list" id="product-list"></div>
+
+  <div id="cart">Carrinho: 0 produtos</div>
+  <button id="checkout" style="display: none;" onclick="goToCheckout()">Ir para o Checkout</button>
+
+  <script>
+    // Fake API: API de produtos fictícia
+    const API_URL = "https://fakestoreapi.com/products";
+
+    // Carrinho de compras
+    let cart = [];
+
+    // Função para buscar produtos da fake API
+    async function fetchProducts() {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      renderProducts(data);
+    }
+
+    // Função para renderizar os produtos
+    function renderProducts(products) {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = "";  // Limpa a lista de produtos antes de renderizar
+
+      products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product');
+        
+        productDiv.innerHTML = `
+          <img src="${product.image}" alt="${product.title}">
+          <h3>${product.title}</h3>
+          <p>R$ ${product.price.toFixed(2)}</p>
+          <button class="product button" onclick="addToCart(${product.id}, '${product.title}', ${product.price})">Adicionar ao Carrinho</button>
+        `;
+
+        productList.appendChild(productDiv);
+      });
+    }
+
+    // Função para adicionar produto ao carrinho
+    function addToCart(id, title, price) {
+      const product = { id, title, price };
+      cart.push(product);
+      updateCart();
+    }
+
+    // Função para atualizar o carrinho
+    function updateCart() {
+      document.getElementById('cart').textContent = `Carrinho: ${cart.length} produto(s)`;
+      document.getElementById('checkout').style.display = cart.length > 0 ? 'block' : 'none';
+    }
+
+    // Função para ir para a tela de checkout
+    function goToCheckout() {
+      let checkoutContent = "<h2>Resumo do Carrinho</h2>";
+      let total = 0;
+
+      cart.forEach(item => {
+        checkoutContent += `
+          <p>${item.title} - R$ ${item.price.toFixed(2)}</p>
+        `;
+        total += item.price;
+      });
+
+      checkoutContent += `<h3>Total: R$ ${total.toFixed(2)}</h3>`;
+      checkoutContent += `<button id="confirm" onclick="confirmCheckout()">Confirmar Compra</button>`;
+
+      document.body.innerHTML = checkoutContent;
+    }
+
+    // Função para simular a confirmação do checkout
+    function confirmCheckout() {
+      alert("Compra Confirmada! Obrigado por comprar na nossa loja!");
+      cart = [];
+      updateCart();
+      fetchProducts();
+    }
+
+    // Chama a função de busca ao carregar a página
+    window.onload = fetchProducts;
+  </script>
+</body>
+</html>
